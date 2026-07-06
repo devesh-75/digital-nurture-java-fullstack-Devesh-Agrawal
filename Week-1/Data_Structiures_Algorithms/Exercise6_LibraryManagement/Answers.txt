@@ -1,0 +1,15 @@
+Exercise 6: Library Management System
+
+1. Linear search and binary search algorithms
+
+Linear search checks each element of a collection one at a time, in order, comparing it against the target value until a match is found or the entire collection has been examined. It works on both sorted and unsorted data but must potentially examine every element.
+
+Binary search operates only on sorted data. It repeatedly compares the target value to the middle element of the current search range and eliminates half of the remaining range based on that comparison, continuing until the target is found or the range is empty.
+
+2. Comparing the time complexity of linear and binary search
+
+Linear search has a time complexity of O(n), since in the worst case it must examine every book in the collection. Binary search has a time complexity of O(log n), since each comparison discards half of the remaining candidates, making it dramatically faster for large collections, though it requires the book list to be sorted by title beforehand, and keeping it sorted has its own maintenance cost when books are added or removed.
+
+3. When to use each algorithm based on data set size and order
+
+Linear search is appropriate for small library catalogs, for data that is not sorted and would be costly to sort just for a single search, or for one-off searches where the overhead of sorting would outweigh the benefit. Binary search is preferable for large catalogs that are searched frequently, since the O(log n) performance scales far better as the number of books grows into the thousands, but it depends on the catalog already being sorted by title or being resorted efficiently whenever new books are added. In a real library system, maintaining a sorted index (or using a more advanced structure such as a balanced tree) is usually worthwhile because search operations vastly outnumber insertions.

@@ -1,0 +1,19 @@
+Exercise 2: E-commerce Platform Search Function
+
+1. Big O notation and how it helps in analyzing algorithms
+
+Big O notation describes how the running time (or space usage) of an algorithm grows as the size of its input increases, ignoring constant factors and lower-order terms. It gives an upper bound on the worst-case growth rate, allowing algorithms to be compared independently of the hardware they run on or the specific input values used. This is useful for predicting how an algorithm will scale, choosing the right approach for a given data size, and identifying which parts of a system will become bottlenecks as the amount of data grows.
+
+2. Best, average, and worst-case scenarios for search operations
+
+For linear search: the best case is O(1), when the target is the first element checked; the average case is O(n), since on average half the list must be scanned; and the worst case is O(n), when the target is the last element or is not present at all.
+
+For binary search on a sorted array: the best case is O(1), when the middle element checked first is the target; the average and worst cases are both O(log n), since each comparison eliminates half of the remaining search space.
+
+3. Comparing the time complexity of linear and binary search
+
+Linear search runs in O(n) time regardless of whether the data is sorted, making it simple but inefficient for large datasets. Binary search runs in O(log n) time, which is dramatically faster for large datasets, but it requires the data to be sorted beforehand, and maintaining that sorted order after insertions or deletions has its own cost (typically O(n) per insertion into an array).
+
+4. Which algorithm is more suitable for the platform and why
+
+For an e-commerce platform's search functionality, binary search is generally more suitable once the product catalog is large, since O(log n) lookups scale far better than O(n) lookups as the catalog grows into the thousands or millions of items. However, this assumes the product list can be kept sorted (or that a more advanced index structure such as a hash-based or tree-based index is used to support fast lookups on unsorted or frequently changing data). Linear search remains reasonable for small catalogs or in cases where the data changes so frequently that keeping it sorted would cost more than the searches themselves save.

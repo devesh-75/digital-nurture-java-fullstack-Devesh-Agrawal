@@ -1,0 +1,19 @@
+Exercise 3: Sorting Customer Orders
+
+1. Different sorting algorithms
+
+Bubble Sort repeatedly steps through the list, comparing each pair of adjacent elements and swapping them if they are in the wrong order. It is simple to implement but inefficient, since it may need many passes over the entire list.
+
+Insertion Sort builds the sorted list one element at a time by taking each new element and inserting it into its correct position among the already-sorted elements. It performs well on small or nearly-sorted lists.
+
+Quick Sort is a divide-and-conquer algorithm that selects a pivot element, partitions the remaining elements into those smaller and larger than the pivot, and recursively sorts each partition. It is efficient on average but can degrade on already-sorted or adversarial input if the pivot is chosen poorly.
+
+Merge Sort is also a divide-and-conquer algorithm that splits the list into halves, recursively sorts each half, and then merges the sorted halves back together. It guarantees consistent performance regardless of the input's initial order, at the cost of extra memory for the merge step.
+
+2. Comparing the performance of Bubble Sort and Quick Sort
+
+Bubble Sort has a time complexity of O(n^2) in both the average and worst cases, since it always compares each pair of adjacent elements across multiple passes. Quick Sort has an average time complexity of O(n log n), which is considerably faster for large datasets, though its worst-case complexity is also O(n^2) when the pivot selection consistently produces unbalanced partitions (for example, when the input is already sorted and the last element is always chosen as the pivot). In practice, well-implemented Quick Sort with good pivot selection (such as choosing a random pivot or the median of three) rarely hits this worst case.
+
+3. Why Quick Sort is generally preferred over Bubble Sort
+
+Quick Sort is preferred for large datasets because its average-case O(n log n) performance scales much better than Bubble Sort's O(n^2) performance as the number of orders grows. For an e-commerce platform that may need to sort thousands of orders by price, this difference becomes significant: doubling the number of orders roughly doubles Quick Sort's work per element but quadruples Bubble Sort's total comparisons. Quick Sort also sorts in place with low memory overhead, making it a practical default choice, while Bubble Sort is generally only reasonable for very small lists or educational purposes.

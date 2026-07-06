@@ -1,0 +1,23 @@
+Exercise 5: Task Management System
+
+1. Different types of linked lists
+
+A Singly Linked List consists of nodes where each node holds data and a single reference to the next node in the sequence. Traversal is only possible in one direction, from head to tail.
+
+A Doubly Linked List extends this by giving each node two references: one to the next node and one to the previous node. This allows traversal in both directions and makes deletion of a known node more efficient, since the previous node does not need to be located by a separate search, at the cost of extra memory per node for the additional pointer.
+
+Other variants include the Circular Linked List, where the last node points back to the first node instead of to null, which is useful for applications that need to cycle through elements repeatedly.
+
+2. Time complexity of each operation
+
+Add (to the end, without a tail pointer): O(n), since the list must be traversed from the head to find the last node. If a tail pointer is maintained, this becomes O(1).
+
+Search: O(n), since each node must be visited in turn from the head until the target is found or the end of the list is reached.
+
+Traverse: O(n), since visiting every node requires exactly one pass through the list.
+
+Delete: O(n) in the worst case, since finding the node to delete (or the node before it) requires traversing the list from the head.
+
+3. Advantages of linked lists over arrays for dynamic data
+
+Linked lists do not require a fixed size to be declared in advance and can grow or shrink dynamically simply by adding or removing nodes, without the need to allocate a new block of memory and copy existing elements as an array resize would require. Insertion and deletion at a known position (once that position is reached) are O(1) operations, since only a constant number of pointer updates are needed, whereas an array requires shifting all subsequent elements. This makes linked lists well suited for task management systems where tasks are frequently added and removed and the total number of tasks is unpredictable, at the cost of losing constant-time random access by index and requiring extra memory for the node pointers.

@@ -1,0 +1,19 @@
+Exercise 4: Employee Management System
+
+1. How arrays are represented in memory and their advantages
+
+An array is stored as a contiguous block of memory, where each element occupies the same fixed amount of space and can be located using its index through a direct offset calculation (base address plus index multiplied by element size). Because of this contiguous layout, arrays offer O(1) constant-time access to any element by index, since the exact memory address can be computed without traversing the structure. Arrays also have relatively low memory overhead compared to structures like linked lists, since no extra memory is needed for pointers between elements, and their contiguous layout is cache-friendly, which improves performance when iterating over elements sequentially.
+
+2. Time complexity of add, search, traverse, and delete
+
+Add: O(1) when appending to the end of an array with available capacity, since it only requires placing the new element at the next open index.
+
+Search: O(n) in the worst case, since an unsorted array requires checking each element in turn until a match is found or the array is exhausted.
+
+Traverse: O(n), since visiting every element requires exactly one pass through the array.
+
+Delete: O(n) in the worst case, because removing an element from the middle of the array requires shifting all subsequent elements one position to the left to close the gap.
+
+3. Limitations of arrays and when to use them
+
+Arrays have a fixed size that must be determined in advance (or require costly resizing, which involves allocating a new array and copying all elements over, an O(n) operation). Inserting or deleting elements anywhere other than the end is expensive because it requires shifting elements to maintain contiguity. Arrays are best used when the number of elements is known in advance or changes infrequently, when fast random access by index is the primary requirement, and when the dataset is small to moderate in size so that occasional O(n) shifts remain acceptable. For employee records that grow and shrink frequently and unpredictably, a dynamic structure such as an ArrayList or a linked list is often more practical than a fixed-size array.

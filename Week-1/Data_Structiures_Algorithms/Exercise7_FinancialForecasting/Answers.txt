@@ -1,0 +1,13 @@
+Exercise 7: Financial Forecasting
+
+1. The concept of recursion and how it simplifies certain problems
+
+Recursion is a technique in which a function solves a problem by calling itself on a smaller version of the same problem, combined with a base case that stops the recursive calls once the problem is small enough to solve directly. It simplifies certain problems because it lets the solution mirror the problem's natural structure. Calculating a future value based on repeated growth over several years is naturally recursive, since the value after n years is simply the value after n-1 years multiplied by the growth factor; expressing this directly as a recursive function is often clearer than manually unrolling the multiplication into an iterative loop, especially for problems with a naturally recursive definition such as this one, or Fibonacci sequences, or tree traversals.
+
+2. Time complexity of the recursive algorithm
+
+The basic recursive implementation makes exactly one recursive call per year, so it runs in O(n) time, where n is the number of years being forecast, and uses O(n) additional space on the call stack due to the depth of recursion. Because each value is computed only once and no branching occurs, this version does not suffer from the exponential blowup seen in naive recursive solutions like plain recursive Fibonacci.
+
+3. Optimizing the recursive solution to avoid excessive computation
+
+Even though this particular recursion is already linear rather than exponential, it can still be optimized in a few ways. Memoization can be used to cache previously computed future values so that if the same forecast range is requested multiple times, the cached result is returned in O(1) instead of being recomputed. The recursion can also be converted to an iterative loop, which computes the same result in O(n) time but O(1) space, since it removes the overhead of the call stack entirely. For very large numbers of years, the future value can additionally be computed directly using the closed-form formula presentValue * (1 + growthRate)^years, which reduces the computation to O(log n) time using fast exponentiation, or O(1) time using a standard power function.
