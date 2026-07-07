@@ -1,0 +1,11 @@
+package com.library;
+
+import org.springframework.core.SpringVersion;
+
+public class LibraryManagementApplication {
+
+    public static void main(String[] args) {
+        System.out.println("LibraryManagement Maven project is set up correctly.");
+        System.out.println("Spring Framework version on classpath: " + SpringVersion.getVersion());
+    }
+}

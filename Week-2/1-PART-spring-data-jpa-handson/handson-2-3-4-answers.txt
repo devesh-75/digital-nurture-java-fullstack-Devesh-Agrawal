@@ -1,0 +1,274 @@
+==================================================================
+HANDS ON 2 - Hibernate XML Config Implementation Walkthrough
+==================================================================
+
+1. How object-to-relational mapping is done in a Hibernate XML
+   configuration file
+------------------------------------------------------------------
+In XML-based Hibernate mapping, the link between a Java class and a
+database table is described in a separate ".hbm.xml" file, not in the
+Java class itself.
+
+- A plain Java class (POJO), e.g. Employee, is written with private
+  fields, getters and setters. It has no Hibernate-specific code in it.
+- A mapping file, e.g. Employee.hbm.xml, declares:
+    <class name="Employee" table="EMPLOYEE">
+        <id name="id" column="id">
+            <generator class="native"/>
+        </id>
+        <property name="firstName" column="first_name"/>
+        <property name="lastName"  column="last_name"/>
+        <property name="salary"    column="salary"/>
+    </class>
+  - <class> maps the Java class to a database table.
+  - <id> marks the primary key field and how its value is generated
+    (native/identity/sequence/increment, etc.).
+  - <property> maps each remaining field to a table column.
+- A central hibernate.cfg.xml file lists database connection details
+  (driver, URL, username, password, dialect) and references every
+  mapping file with <mapping resource="Employee.hbm.xml"/>.
+
+This keeps persistence mapping completely outside the Java class,
+which is useful when the class must stay a "plain" POJO, or when the
+mapping needs to change without recompiling the class.
+
+2. Core end-to-end operations in Hibernate (XML config style)
+------------------------------------------------------------------
+- SessionFactory
+    A heavyweight, thread-safe object built once per application (or
+    per database) from hibernate.cfg.xml. It is expensive to create,
+    so it is normally created once and reused for the life of the
+    application.
+        SessionFactory factory = new Configuration()
+                .configure("hibernate.cfg.xml")
+                .buildSessionFactory();
+
+- Session
+    A lightweight, single-threaded unit of work created from the
+    SessionFactory. It represents a conversation between the
+    application and the database and wraps a JDBC connection. A new
+    Session is opened for each unit of work (e.g. per request, per
+    transaction) and closed afterwards.
+        Session session = factory.openSession();
+
+- Transaction
+    Groups one or more operations so they succeed or fail together.
+        Transaction tx = session.beginTransaction();
+        ...
+        tx.commit();
+
+- beginTransaction()
+    Starts a new database transaction on the current Session. All
+    save/update/delete calls made afterwards participate in this
+    transaction until it is committed or rolled back.
+
+- commit()
+    Flushes any pending changes to the database and permanently
+    applies the transaction.
+
+- rollback()
+    Undoes all changes made since beginTransaction() was called -
+    used inside a catch block when an exception occurs, so the
+    database is left in a consistent state.
+
+- session.save()
+    Inserts a new object as a row in its mapped table and returns the
+    generated identifier.
+        Integer id = (Integer) session.save(employee);
+
+- session.createQuery().list()
+    Runs an HQL (Hibernate Query Language) query - written in terms
+    of class/property names rather than table/column names - and
+    returns the matching results as a List.
+        List result = session.createQuery("FROM Employee").list();
+
+- session.get()
+    Fetches a single row by primary key and maps it back into an
+    object of the entity class. Returns null if no row is found for
+    that key (unlike load(), which throws an exception).
+        Employee emp = (Employee) session.get(Employee.class, id);
+
+- session.delete()
+    Deletes the row corresponding to the given persistent object.
+        session.delete(employee);
+
+Typical flow: build SessionFactory once -> open a Session -> begin a
+Transaction -> save/get/update/delete/query -> commit (or rollback on
+error) -> close the Session.
+
+
+==================================================================
+HANDS ON 3 - Hibernate Annotation Config Implementation Walkthrough
+==================================================================
+
+1. How object-to-relational mapping is done in the Employee
+   persistence class (annotation style)
+------------------------------------------------------------------
+Instead of a separate XML mapping file, the mapping information is
+written directly on the Java class using annotations:
+
+    @Entity
+    @Table(name = "EMPLOYEE")
+    public class Employee {
+
+        @Id
+        @GeneratedValue
+        @Column(name = "id")
+        private int id;
+
+        @Column(name = "first_name")
+        private String firstName;
+
+        @Column(name = "last_name")
+        private String lastName;
+
+        @Column(name = "salary")
+        private int salary;
+
+        // getters and setters
+    }
+
+The class itself now carries its own mapping metadata, so there is no
+extra .hbm.xml file to maintain - the trade-off is that persistence
+concerns are mixed into the domain class.
+
+2. Core end-to-end operations in Hibernate (annotation config style)
+------------------------------------------------------------------
+- @Entity
+    Marks a class as a persistent entity that Hibernate should manage
+    and map to a database table.
+
+- @Table
+    Optional; specifies the table name (and optionally schema/catalog)
+    the entity maps to. If omitted, Hibernate uses the class name as
+    the table name by default.
+
+- @Id
+    Marks the field that is the primary key of the table.
+
+- @GeneratedValue
+    Tells Hibernate how the primary key value should be generated
+    automatically (e.g. GenerationType.IDENTITY, SEQUENCE, AUTO,
+    TABLE) instead of the application supplying it.
+
+- @Column
+    Maps a field to a specific column name; also used to set
+    constraints like length, nullable, unique, etc. If omitted,
+    Hibernate uses the field name as the column name by default.
+
+- Hibernate Configuration (hibernate.cfg.xml)
+    A single XML file (not a per-class mapping file) that holds the
+    database connection and Hibernate engine settings, and lists the
+    annotated classes to be scanned:
+        <session-factory>
+            <property name="hibernate.dialect">...</property>
+            <property name="hibernate.connection.driver_class">...</property>
+            <property name="hibernate.connection.url">...</property>
+            <property name="hibernate.connection.username">...</property>
+            <property name="hibernate.connection.password">...</property>
+            <mapping class="Employee"/>
+        </session-factory>
+
+    - Dialect: tells Hibernate which SQL "flavor" to generate for the
+      target database (e.g. MySQL5Dialect, H2Dialect, Oracle10gDialect),
+      since different databases have slightly different SQL syntax
+      and data types.
+    - Driver: the fully qualified JDBC driver class used to connect
+      to the database (e.g. com.mysql.cj.jdbc.Driver).
+    - Connection URL: the JDBC URL identifying the database server,
+      host, port and schema/database name.
+    - Username / Password: credentials Hibernate uses to open the
+      JDBC connection.
+
+The SessionFactory / Session / Transaction / save / get / delete /
+query workflow described in Hands on 2 is exactly the same here - only
+how the class-to-table mapping is declared changes (XML file vs.
+annotations on the class).
+
+
+==================================================================
+HANDS ON 4 - Difference between JPA, Hibernate and Spring Data JPA
+==================================================================
+
+Java Persistence API (JPA)
+------------------------------------------------------------------
+- JPA is a specification (JSR 338) - a documented contract of
+  annotations and interfaces (@Entity, EntityManager, etc.) that
+  describes how Java objects should be persisted to a relational
+  database.
+- A specification has no code of its own; it only defines what a
+  compliant implementation must provide.
+
+Hibernate
+------------------------------------------------------------------
+- Hibernate is an ORM framework that provides an actual, concrete
+  implementation of the JPA specification (and also offers extra,
+  Hibernate-specific features beyond plain JPA, such as its own
+  native API - SessionFactory, Session, HQL).
+- Other JPA implementations exist too (e.g. EclipseLink, OpenJPA);
+  Hibernate is simply the most widely used one.
+
+Spring Data JPA
+------------------------------------------------------------------
+- Spring Data JPA does not implement JPA itself; it sits one layer
+  above a JPA implementation (typically Hibernate) inside the Spring
+  ecosystem.
+- Its main job is to remove boilerplate code: instead of writing
+  SessionFactory/EntityManager/transaction-handling code by hand, a
+  developer just declares an interface (e.g. extends JpaRepository)
+  and Spring generates the implementation - findAll(), findById(),
+  save(), deleteById(), plus custom query methods derived from method
+  names - at runtime.
+- It also integrates with Spring's declarative transaction management
+  (@Transactional), so transaction begin/commit/rollback is handled
+  by the framework rather than written explicitly.
+
+Side-by-side comparison
+------------------------------------------------------------------
+Plain Hibernate - creating an employee (manual session/transaction
+handling, explicit try/catch/finally, manual rollback):
+
+    public Integer addEmployee(Employee employee) {
+        Session session = factory.openSession();
+        Transaction tx = null;
+        Integer employeeID = null;
+        try {
+            tx = session.beginTransaction();
+            employeeID = (Integer) session.save(employee);
+            tx.commit();
+        } catch (HibernateException e) {
+            if (tx != null) tx.rollback();
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
+        return employeeID;
+    }
+
+Spring Data JPA - the same operation:
+
+    // EmployeeRepository.java
+    public interface EmployeeRepository extends JpaRepository<Employee, Integer> {
+    }
+
+    // EmployeeService.java
+    @Autowired
+    private EmployeeRepository employeeRepository;
+
+    @Transactional
+    public void addEmployee(Employee employee) {
+        employeeRepository.save(employee);
+    }
+
+What this shows:
+- No SessionFactory/Session code is written by hand - Spring Boot
+  auto-configures it behind the scenes.
+- No manual try/catch/finally for transaction handling - @Transactional
+  lets Spring open, commit or roll back the transaction automatically.
+- The repository interface needs no method body at all for standard
+  CRUD operations; Spring Data JPA generates the implementation.
+
+In short: JPA = specification, Hibernate = an implementation of that
+specification (and an ORM tool in its own right), Spring Data JPA =
+a productivity layer on top of a JPA implementation that removes
+repetitive persistence code.

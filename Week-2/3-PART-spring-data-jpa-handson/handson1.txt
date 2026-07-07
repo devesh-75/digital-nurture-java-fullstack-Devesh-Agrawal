@@ -1,0 +1,12 @@
+Hands-on 1: Introduction to HQL and JPQL
+
+1. Concepts:
+   - HQL stands for Hibernate Query Language.
+   - JPQL stands for Java Persistence Query Language.
+   - Both HQL and JPQL are object-focused query languages, mapping database tables to entity objects. Instead of querying tables and columns, they query Java classes and their fields.
+
+2. Comparison:
+   - JPQL is a specification (part of JPA), while HQL is the Hibernate implementation of JPQL.
+   - JPQL is a subset of HQL. All valid JPQL queries are valid HQL queries, but the reverse is not true (HQL contains Hibernate-specific extensions).
+   - Both JPQL and HQL support SELECT, UPDATE, and DELETE operations.
+   - HQL additionally supports INSERT INTO ... SELECT ... statements (inserting data from another query), whereas JPQL does not standardly support INSERT statements.

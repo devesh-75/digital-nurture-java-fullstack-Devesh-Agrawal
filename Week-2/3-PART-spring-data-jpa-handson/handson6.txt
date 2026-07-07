@@ -1,0 +1,29 @@
+Hands-on 6: Criteria Query
+
+1. Problem Description:
+   In the Amazon product search scenario, the filter criteria (Customer review, Hard Disk Size, RAM Size, CPU Speed, Operating System, Weight, CPU) are optional and selected dynamically by the user. 
+   If we write a static HQL query, we would need to generate a dynamic SQL string containing different WHERE clauses based on which options are non-null. For example:
+   "SELECT p FROM Product p WHERE 1=1" 
+   And then append strings like " AND p.ramSize = :ramSize" or " AND p.cpuSpeed >= :cpuSpeed" conditionally.
+   This approach is prone to string concatenation errors, syntax issues, SQL injection risks, and is hard to maintain.
+
+2. How Criteria Query helps:
+   JPA/Hibernate Criteria Query API allows building queries programmatically using strongly-typed Java objects.
+   - We can instantiate a `CriteriaBuilder` and a `CriteriaQuery<Product>`.
+   - We define the `Root<Product>` to represent the product entity.
+   - We construct a list of `Predicate` objects based on user selection:
+     ```java
+     List<Predicate> predicates = new ArrayList<>();
+     if (ramSize != null) {
+         predicates.add(cb.equal(product.get("ramSize"), ramSize));
+     }
+     if (minCpuSpeed != null) {
+         predicates.add(cb.ge(product.get("cpuSpeed"), minCpuSpeed));
+     }
+     // Add other conditions dynamically...
+     ```
+   - Finally, we pass these predicates to the query:
+     ```java
+     query.where(cb.and(predicates.toArray(new Predicate[0])));
+     ```
+   This ensures that the final SQL query is built dynamically, safely, and cleanly by the JPA provider, avoiding manual string parsing and formatting.
