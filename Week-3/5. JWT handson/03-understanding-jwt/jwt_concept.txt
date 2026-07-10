@@ -1,0 +1,99 @@
+================================================================================
+UNDERSTANDING JSON WEB TOKENS (JWT)
+================================================================================
+
+1. WHAT IS JWT?
+--------------------------------------------------------------------------------
+JSON Web Token (JWT) is an open internet standard (RFC 7519) that defines a compact 
+and self-contained way for securely transmitting information between parties as a 
+JSON object. This information can be verified and trusted because it is digitally 
+signed. 
+
+JWTs can be signed using a secret (with the HMAC algorithm) or a public/private key 
+pair using RSA or ECDSA.
+
+
+2. THE LIMITATIONS OF STANDARD HTTP BASIC SECURITY
+--------------------------------------------------------------------------------
+In standard HTTP Basic Security:
+- RESTful Web Services are stateless. This means each request must contain the user's 
+  credentials (username and password) to authenticate.
+- The credentials are sent in the `Authorization` header as a Base64-encoded string:
+  `Authorization: Basic YWRtaW46cHdk`
+- Base64 is an encoding scheme, NOT encryption. Anyone intercepting the request can 
+  easily decode `YWRtaW46cHdk` to retrieve the cleartext credentials `"admin:pwd"`.
+- Passing raw credentials on every single request increases the attack surface.
+
+
+3. JWT PROCESS FLOW (STATELESS AUTHENTICATION)
+--------------------------------------------------------------------------------
+JWT solves the credential exposure issue by exchanging credentials for a temporary, 
+signed token:
+
+  Client                                             Server
+    |                                                  |
+    |---- 1. POST /authenticate (user:pwd in header) ->|
+    |                                                  | (Validates credentials,
+    |                                                  |  generates a JWT signed
+    |                                                  |  with a secret key)
+    |<--- 2. Returns JWT Token ------------------------|
+    |                                                  |
+    |                                                  |
+    |---- 3. GET /countries (Authorization: Bearer) -->|
+    |                                                  | (Parses and validates signature
+    |                                                  |  using secret key. No DB call or
+    |                                                  |  credentials needed!)
+    |<--- 4. Returns countries data -------------------|
+    |                                                  |
+
+
+4. THE STRUCTURE OF A JSON WEB TOKEN
+--------------------------------------------------------------------------------
+A JWT is composed of three parts separated by dots (`.`):
+`header.payload.signature`
+
+- **Header**:
+  Typically consists of two parts: the type of the token (which is JWT) and the signing 
+  algorithm being used, such as HMAC SHA256 or RSA.
+  Example:
+  {
+    "alg": "HS256",
+    "typ": "JWT"
+  }
+  *This is Base64Url encoded to form the first part of the JWT.*
+
+- **Payload**:
+  Contains the claims. Claims are statements about an entity (typically, the user) and 
+  additional data (e.g. roles, expiration time).
+  Example:
+  {
+    "sub": "user",
+    "iat": 1570379474,
+    "exp": 1570380674
+  }
+  *This is Base64Url encoded to form the second part of the JWT.*
+
+- **Signature**:
+  To create the signature part you have to take the encoded header, the encoded payload, 
+  a secret key, the algorithm specified in the header, and sign that.
+  Example:
+  HMACSHA256(
+    base64UrlEncode(header) + "." +
+    base64UrlEncode(payload),
+    secretkey
+  )
+  *This signature verifies that the sender of the JWT is who it claims to be and ensures 
+  that the message wasn't changed along the way.*
+
+
+5. VERIFYING JWT CREATION (JWT.IO EXERCISE)
+--------------------------------------------------------------------------------
+1. Open https://jwt.io/ in your browser.
+2. In the Decoded section, you will see Header, Payload, and Verify Signature panels.
+3. Paste the header JSON from a standard JWT into the Header panel.
+4. Paste the payload JSON (e.g., subject "user", expiration timestamps) into the Payload panel.
+5. In the "Verify Signature" panel, enter your signing secret (e.g., `"secretkey"`).
+6. The Encoded panel on the left will automatically compile these elements into a single 
+   three-part JWT token: `header_encoded.payload_encoded.signature_encoded`.
+7. If the secret key matches, the server can instantly verify the authenticity of the token 
+   without checking any database or sessions.

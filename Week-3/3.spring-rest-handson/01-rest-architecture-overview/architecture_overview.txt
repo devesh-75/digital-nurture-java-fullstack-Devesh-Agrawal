@@ -1,0 +1,77 @@
+================================================================================
+RESTFUL WEB SERVICE ARCHITECTURE AND INTEGRATION
+================================================================================
+
+1. REST WEB SERVICE ARCHITECTURE (CONTROLLER-SERVICE-DAO PATTERN)
+--------------------------------------------------------------------------------
+A standard RESTful Web Service in Spring Boot is organized into three distinct 
+layers, each having a specific responsibility. This enforces separation of concerns 
+and makes the application maintainable, testable, and scalable:
+
+   +------------------+      HTTP GET /employees
+   |  Client (Browser/| ---------------------------> +------------------------+
+   |     Postman)     | <--------------------------- |   EmployeeController   | (REST Controller)
+   +------------------+      JSON Response           +------------------------+
+                                                                 |
+                                                                 v
+                                                     +------------------------+
+                                                     |    EmployeeService     | (Service Layer)
+                                                     +------------------------+
+                                                                 |
+                                                                 v
+                                                     +------------------------+
+                                                     |      EmployeeDao       | (Data Access Object)
+                                                     +------------------------+
+                                                                 |
+                                                                 v
+                                                     +------------------------+
+                                                     |      employee.xml      | (Spring XML Config)
+                                                     +------------------------+
+
+- **Controller Layer (@RestController)**:
+  - Intercepts incoming HTTP requests.
+  - Handles URL mapping (e.g., `@GetMapping("/employees")`).
+  - Converts request parameters/path variables and delegates the request execution to 
+    the Service Layer.
+  - Formats and serializes the return value (e.g., converting Java Beans to JSON using 
+    Jackson automatically) and returns it in the HTTP Response.
+  
+- **Service Layer (@Service)**:
+  - Implements the core business logic.
+  - Coordinates transactions using the `@Transactional` annotation.
+  - Integrates various DAO services and transforms data if needed.
+  
+- **Data Access Object Layer (DAO) / Repository (@Repository)**:
+  - Directly interacts with the data storage (e.g., database, in-memory collection, 
+    or XML files like `employee.xml`).
+  - Insulates the service layer from direct data queries and structural changes.
+
+
+2. PROBLEM STATEMENT OVERVIEW
+--------------------------------------------------------------------------------
+In an enterprise application, front-end (e.g., Angular) and back-end (e.g., Spring Boot) 
+are developed independently:
+- **Angular UI**: Displays employee tables, lists, and forms. In mock stages, this data 
+  is hard-coded inside components/services.
+- **Spring Boot REST API**: Provides real-time endpoint endpoints.
+- **Integration**: The Angular application is updated to make asynchronous HTTP requests 
+  (`HttpClient`) to the Spring Boot backend (`http://localhost:8083/employees` and 
+  `http://localhost:8083/departments`) to fetch live data.
+- **Edit Employee Flow**:
+  1. Clicking "Edit" on an employee row sends a `GET` request to `/employees/{id}` or 
+     retrieves the detailed employee representation from the list.
+  2. The edit form displays the fetched employee data.
+  3. The department dropdown is populated dynamically by calling `/departments` 
+     to fetch all valid departments.
+
+
+3. POSTMAN TESTING FLOW
+--------------------------------------------------------------------------------
+Postman is utilized as an HTTP client to test endpoints:
+- Select the `GET` method.
+- Enter the URL: `http://localhost:8083/employees`.
+- Inspect the JSON array containing the static list parsed from `employee.xml`.
+- Enter the URL: `http://localhost:8083/departments`.
+- Inspect the list of departments returned.
+- Check backend console logs to verify that the start and end logging messages print:
+  `getAllEmployees() - START` / `getAllDepartments() - START`

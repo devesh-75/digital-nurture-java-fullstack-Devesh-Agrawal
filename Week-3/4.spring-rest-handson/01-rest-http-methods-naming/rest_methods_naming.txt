@@ -1,0 +1,79 @@
+================================================================================
+HTTP METHOD TYPES AND RESTful RESOURCE NAMING GUIDELINES
+================================================================================
+
+1. SIGNIFICANCE OF HTTP METHOD TYPES IN RESTFUL WEB SERVICES
+--------------------------------------------------------------------------------
+HTTP methods act as verbs that indicate the desired action to be performed on a 
+given resource. In REST architecture, these standard methods map directly to 
+CRUD (Create, Read, Update, Delete) operations:
+
+- **GET**: 
+  - **CRUD Equivalent**: Read
+  - **Usage**: Used to retrieve data about a resource.
+  - **Characteristics**: Safe (does not modify state) and idempotent (multiple 
+    identical requests produce the same result).
+- **POST**: 
+  - **CRUD Equivalent**: Create
+  - **Usage**: Used to create a new resource on the server.
+  - **Characteristics**: Neither safe nor idempotent (submitting twice creates 
+    two separate resources).
+- **PUT**: 
+  - **CRUD Equivalent**: Update (or Create if ID is client-generated)
+  - **Usage**: Used to update an existing resource or replace its representation 
+    entirely.
+  - **Characteristics**: Idempotent (replacing a resource multiple times with 
+    the same state results in the same final state).
+- **DELETE**: 
+  - **CRUD Equivalent**: Delete
+  - **Usage**: Used to remove a resource from the server.
+  - **Characteristics**: Idempotent (deleting a resource multiple times has 
+    the same outcome; the resource remains deleted).
+
+*Important note*: HTTP method types are semantic classifications. The HTTP protocol 
+does not automatically persist or delete data; the backend application (Spring Boot/Java) 
+must implement the database/memory persistence logic for these verbs.
+
+
+2. RESTful WEB SERVICE RESOURCE NAMING GUIDELINES
+--------------------------------------------------------------------------------
+To design intuitive, clean, and standardized API endpoints, follow these rules:
+
+- **Use nouns, not verbs**: Represent resources as entities (nouns) rather than actions.
+  - *Correct*: `GET /countries`
+  - *Incorrect*: `GET /getAllCountries`
+- **Use plural nouns for resource collections**: Keep names plural to represent the collection.
+  - *Correct*: `GET /countries`
+- **Use path parameters to access specific resources**: Follow the collection name with 
+  a slash and the identifier.
+  - *Correct*: `GET /countries/in` or `GET /countries/{code}`
+- **Payload for Creation/Modification**: For POST and PUT, define the data details inside 
+  the HTTP request body (payload) in JSON or XML format, not in the URL parameters.
+- **Separate words with hyphens (kebab-case)**: Do not use underscores or camelCase 
+  in URIs.
+  - *Correct*: `/menu-items`
+  - *Incorrect*: `/menu_items` or `/menuItems`
+- **Align methods on the same base URL**: Map all CRUD operations for a specific resource 
+  to the same URL path, differentiated by the HTTP verb.
+
+Example matrix for the `/countries` resource:
+   Method Type | URL Pattern            | Description             | Spring Annotation
+   ------------+------------------------+-------------------------+-------------------------
+   GET         | /countries             | Get all countries       | @GetMapping
+   GET         | /countries/{code}      | Get a specific country  | @GetMapping("/{code}")
+   POST        | /countries             | Create a country        | @PostMapping
+   PUT         | /countries             | Update a country        | @PutMapping
+   DELETE      | /countries/{code}      | Delete a country        | @DeleteMapping("/{code}")
+
+
+3. METHOD-SPECIFIC SPRING ANNOTATIONS
+--------------------------------------------------------------------------------
+Spring MVC provides specialized annotations which are shortcuts for `@RequestMapping`:
+- `@GetMapping`: Short for `@RequestMapping(method = RequestMethod.GET)`
+- `@PostMapping`: Short for `@RequestMapping(method = RequestMethod.POST)`
+- `@PutMapping`: Short for `@RequestMapping(method = RequestMethod.PUT)`
+- `@DeleteMapping`: Short for `@RequestMapping(method = RequestMethod.DELETE)`
+
+By defining `@RequestMapping("/countries")` at the class level of a controller, all 
+method-level mappings (e.g. `@GetMapping("/{code}")`) are appended to this base path, 
+ensuring a neat, organized structure.

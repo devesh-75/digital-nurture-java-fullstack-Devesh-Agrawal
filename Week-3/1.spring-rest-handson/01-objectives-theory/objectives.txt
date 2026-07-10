@@ -1,0 +1,71 @@
+OBJECTIVES - SPRING BOOT / SPRING CORE
+========================================
+
+1. Demonstrate creation of Spring Boot Application
+------------------------------------------------------
+- Spring Initializr (https://start.spring.io) is a web-based tool used to bootstrap
+  a new Spring Boot project by generating the project structure, pom.xml, and
+  starter dependencies.
+- @SpringBootApplication is a convenience annotation that combines:
+    @Configuration       - marks the class as a source of bean definitions
+    @EnableAutoConfiguration - enables Spring Boot's auto-configuration mechanism
+    @ComponentScan        - enables scanning for components in the current package
+- SpringApplication.run() bootstraps and launches the Spring application, starting
+  the embedded servlet container (e.g., Tomcat) and the Spring ApplicationContext.
+
+Reference: https://start.spring.io
+
+
+2. Explain the need and benefits of Spring Boot
+------------------------------------------------------
+- Makes Java development easy and fast by removing repetitive setup work.
+- Avoids tedious development steps such as manual configuration of the
+  DispatcherServlet, view resolvers, etc.
+- Reduces overall development time via sensible auto-configuration defaults.
+- Avoids writing boilerplate code (e.g., no need to manually wire common beans).
+- Provides an embedded Tomcat (or Jetty/Undertow) server, so applications can be
+  run as a standalone JAR without deploying to an external server.
+- Avoids XML configuration in favor of annotation-based and Java-based configuration.
+
+Reference: https://www.journaldev.com/7969/spring-boot-tutorial
+
+
+3. Demonstrate loading a bean from a Spring configuration file
+------------------------------------------------------
+- Spring configuration XML files declare beans using the spring-beans XSD schema
+  (spring-beans.xsd).
+- Key elements/attributes:
+    <bean>              - declares a bean
+    id                  - unique identifier of the bean
+    class               - fully qualified class name to instantiate
+    <constructor-arg>   - supplies constructor injection values
+    <property>          - supplies setter injection values
+    name / value        - property name and value for setter injection
+- ClassPathXmlApplicationContext loads bean definitions from an XML file located
+  on the classpath and creates an ApplicationContext (Spring's IoC container).
+- context.getBean() retrieves a bean instance (by id and/or type) from the
+  container.
+- Bean scopes:
+    singleton  - (default) a single shared instance is created and reused
+    prototype  - a new instance is created every time the bean is requested
+
+References:
+  https://docs.spring.io/spring-framework/docs/current/spring-framework-reference/core.html
+  IoC Container: https://docs.spring.io/spring-framework/docs/current/spring-framework-reference/core.html#beans
+  Scopes: https://docs.spring.io/spring-framework/docs/current/spring-framework-reference/core.html#beans-factory-scopes
+  Constructor Injection: https://docs.spring.io/spring-framework/docs/current/spring-framework-reference/core.html#beans-constructor-injection
+  Setter Injection: https://docs.spring.io/spring-framework/docs/current/spring-framework-reference/core.html#beans-setter-injection
+
+
+4. Demonstrate inclusion of logging in a Spring Boot Application
+------------------------------------------------------
+- application.properties is the default configuration file for a Spring Boot app.
+- logging.level.<package> sets the logging level for a specific package
+  (e.g., trace, debug, info, warn, error).
+- logging.pattern.console customizes the console log output format.
+- server.port configures the embedded server's HTTP port.
+- LoggerFactory.getLogger(Class) obtains an SLF4J Logger instance for a class.
+- Logger provides methods such as trace(), debug(), info(), warn(), error() to
+  emit log messages at the corresponding level.
+
+Reference: https://docs.spring.io/spring-boot/docs/current/reference/html/boot-features-logging.html

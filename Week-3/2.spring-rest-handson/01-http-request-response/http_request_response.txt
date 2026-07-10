@@ -1,0 +1,120 @@
+================================================================================
+HTTP REQUEST AND RESPONSE EXPLANATION
+================================================================================
+
+1. HTTP REQUEST AND RESPONSE OVERVIEW
+--------------------------------------------------------------------------------
+Hypertext Transfer Protocol (HTTP) is an application-layer protocol for transmitting 
+hypermedia documents, such as HTML. It is designed for communication between web 
+browsers and web servers, following a classic client-server model where a client 
+opens a connection to make a request, then waits until it receives a response.
+
+An HTTP transaction consists of:
+- **HTTP Request**: Sent by the client (browser/Postman) to request a resource.
+- **HTTP Response**: Sent by the server to provide the resource or status information.
+
+
+2. HTTP REQUEST FORMAT
+--------------------------------------------------------------------------------
+An HTTP Request is formatted in plain text (ASCII/UTF-8) and consists of:
+- **Request Line**: The first line containing the Request Method, Request URI (Resource), 
+  and HTTP Version.
+- **Request Headers**: Key-value pairs containing metadata about the request 
+  (e.g., User-Agent, Accept-Language, Host, Content-Type).
+- **Empty Line (CRLF)**: A blank line separating the headers from the body.
+- **Request Body (Payload)**: Optional content sent to the server (used in POST/PUT).
+
+Example (RFC 7230, page 7):
+    GET /hello.txt HTTP/1.1
+    User-Agent: curl/7.16.3 libcurl/7.16.3 OpenSSL/0.9.7l zlib/1.2.3
+    Host: www.example.com
+    Accept-Language: en, mi
+
+Breakdown of the request details:
+- **Line 1 (Request Line)**:
+  - **Method Type**: `GET` (Retrieves the resource).
+  - **Resource**: `/hello.txt` (The target resource path).
+  - **HTTP Version**: `HTTP/1.1` (Protocol version used).
+- **Line 2 (User-Agent)**: Details about the client software making the request. 
+  Here, it is `curl/7.16.3` with OpenSSL and zlib.
+- **Line 3 (Host)**: The domain name of the server (`www.example.com`).
+- **Line 4 (Accept-Language)**: Preferred languages (`en, mi`).
+
+*URL Breakdown in Browser vs. HTTP Request*:
+When you enter a URL like `http://www.example.com/hello.txt` in a browser, it is 
+deconstructed:
+- **Host**: `www.example.com` (becomes the `Host` header).
+- **Resource**: `/hello.txt` (becomes the path in the Request Line).
+
+
+3. HTTP RESPONSE FORMAT
+--------------------------------------------------------------------------------
+An HTTP Response consists of:
+- **Status Line**: The first line containing the HTTP Version, Status Code, and Reason Phrase.
+- **Response Headers**: Metadata about the response/server (e.g., Date, Content-Type, Content-Length).
+- **Empty Line (CRLF)**: A blank line separating the headers from the body.
+- **Response Body (Payload)**: The actual resource data returned (HTML, JSON, Image, Text).
+
+Example (RFC 7230, page 7):
+    HTTP/1.1 200 OK
+    Date: Mon, 27 Jul 2009 12:28:53 GMT
+    Server: Apache
+    Last-Modified: Wed, 22 Jul 2009 19:15:56 GMT
+    ETag: "34aa387-d-1568eb00"
+    Accept-Ranges: bytes
+    Content-Length: 51
+    Vary: Accept-Encoding
+    Content-Type: text/plain
+
+    Hello World! My payload includes a trailing CRLF.
+
+Breakdown of the response details:
+- **Line 1 (Status Line)**:
+  - **HTTP Version**: `HTTP/1.1`
+  - **Response Status Code**: `200` (indicates a successful request).
+  - **Response Message (Reason Phrase)**: `OK` (human-readable status).
+- **Line 2 (Date)**: Timestamp when the response was generated.
+- **Line 9 (Content-Type)**: `text/plain`. This header tells the browser how 
+  to display or handle the content:
+  - `text/plain`: Standard plain text.
+  - `text/html`: HTML document structure (rendered as a webpage).
+  - `application/json`: JSON key-value format (typically processed by JS/stored as data).
+  - `image/png`: Raw binary bytes representing a PNG image.
+- **Last Line (Payload)**: `"Hello World! My payload includes a trailing CRLF."` 
+  This is the actual data content returned by the server.
+
+
+4. KEY CONCEPTS EXPLAINED
+--------------------------------------------------------------------------------
+- **Request URL**: The Uniform Resource Locator representing the address of the 
+  resource on the web (e.g., `http://localhost:8083/hello`).
+- **Request Method**: The action to be performed (GET, POST, PUT, DELETE, etc.).
+- **Content-Type**: Declares the MIME type of the resource body (for both requests 
+  and responses).
+- **User-Agent**: Information about the requesting application, browser version, 
+  and OS.
+
+
+5. HOW TO VIEW REQUEST & RESPONSE DETAILS IN BROWSER (CHROME)
+--------------------------------------------------------------------------------
+1. Open Google Chrome.
+2. Press `F12` (or right-click anywhere and select `Inspect`) to open **Developer Tools**.
+3. Select the **Network** tab at the top.
+4. Enter a website URL (e.g., `https://www.google.com`) in the address bar and press Enter.
+5. In the Network panel list, click on the very first resource request (usually the main document).
+6. A details panel will open on the right side. It contains three main sections:
+   - **General**: Displays Request URL, Request Method, Status Code, and Remote Address.
+   - **Response Headers**: Metadata sent by the server back to the browser.
+   - **Request Headers**: Metadata sent by the browser to the server.
+
+
+6. HOW TO VIEW HTTP HEADERS IN POSTMAN
+--------------------------------------------------------------------------------
+1. Launch Postman.
+2. Enter the request URL (e.g., `http://localhost:8083/hello`) and select the `GET` method.
+3. Click the **Send** button.
+4. In the response pane (bottom half of the screen), click on the **Headers** tab.
+5. This will display all HTTP headers received from the server (e.g., `Content-Type`, 
+   `Content-Length`, `Date`, etc.).
+6. You can also view the headers sent by clicking the **Headers** tab in the request 
+   pane (upper half) or by inspecting the **Console** (`Ctrl + Alt + C` on Windows).

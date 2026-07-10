@@ -1,0 +1,47 @@
+================================================================================
+JSON TO BEAN MAPPING AND BEAN NAMING CONVENTIONS IN SPRING REST
+================================================================================
+
+1. HOW SPRING CONVERTS JSON REQUEST PAYLOAD INTO A JAVA BEAN
+--------------------------------------------------------------------------------
+When a client sends an HTTP POST request with a JSON payload, Spring MVC takes 
+care of deserializing it into a Java object automatically. This mechanism relies 
+on the following steps:
+
+1. **Jackson Parser**: 
+   Spring Boot includes the Jackson library (`jackson-databind`) in its standard web 
+   starter. When an incoming request contains a `Content-Type: application/json` 
+   header, Spring selects `MappingJackson2HttpMessageConverter` to parse the payload.
+   
+2. **Reflection and JavaBean Naming Conventions**:
+   Jackson parses the JSON keys and maps them to the fields of the target Java class 
+   using JavaBean conventions:
+   - For each attribute key in JSON (e.g., `"code"`), Jackson maps it to the Java 
+     property of the same name.
+   - It instantiates the bean using the default constructor (hence a no-args constructor 
+     is mandatory in domain objects like `Country`).
+   - It determines the appropriate setter method using naming rules: the first character 
+     of the property is capitalized (e.g., `"code"` -> `"Code"`), and it is prefixed 
+     with `"set"` (resulting in `setCode`). It then invokes this setter using the Java 
+     Reflection API.
+   - If an attribute in the JSON does not have a matching setter, Jackson throws an 
+     exception (or ignores it if configured to do so). If the JSON field is misspelled 
+     or omitted (e.g. `"nae"` instead of `"name"`), the setter for `name` is never called, 
+     resulting in a null value for that field (e.g., `name: null`).
+
+3. **Controller Parameter Binding**:
+   The `@RequestBody` annotation on the controller parameter tells Spring to read the 
+   raw HTTP request body, pass it through the Jackson converter, and bind the resulting 
+   fully-populated Java object (`Country`) as an argument when calling the controller method.
+
+
+2. BEAN PROPERTY NAMING CONVENTIONS
+--------------------------------------------------------------------------------
+JavaBean properties must adhere to standard camelCase naming rules to ensure correct 
+mapping:
+- Variable names should start with a lowercase letter (e.g., `code`, `name`, `dateOfBirth`).
+- Multi-word properties should capitalize subsequent words (e.g., `dateOfBirth` -> `setDateOfBirth`).
+- Acronyms at the start of a variable should be handled carefully. For instance, `uRL` 
+  can lead to issues in setter parsing; prefer `url` (`setUrl`) or `userId` (`setUserId`).
+- Key names in JSON payloads must match these field names exactly (case-sensitive) to 
+  be parsed correctly by the default Jackson configuration.

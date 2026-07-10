@@ -1,0 +1,75 @@
+================================================================================
+NEED AND BENEFITS OF RESTFUL WEB SERVICES
+================================================================================
+
+1. WHAT IS REST?
+--------------------------------------------------------------------------------
+REST stands for **REpresentational State Transfer**. It is an architectural style 
+designed for distributed hypermedia systems. Introduced by Roy Fielding in his 2000 
+doctoral dissertation, REST defines a set of constraints to create Web Services that 
+are performant, scalable, and highly adaptable.
+
+
+2. CHARACTERISTICS OF RESTFUL SERVICES
+--------------------------------------------------------------------------------
+- **Underlying Protocol (HTTP)**: REST utilizes the standard HTTP protocol for 
+  communication. This eliminates the need for proprietary software/protocols, making 
+  it highly compatible with existing internet infrastructure.
+- **Lightweight**: Unlike XML-based SOAP (Simple Object Access Protocol) which requires 
+  heavy XML packaging, REST typically uses lightweight data formats like JSON (JavaScript 
+  Object Notation) or simple text, minimizing network bandwidth.
+- **Maintainable**: Since client and server are decoupled, changes can be made to 
+  the server implementation (such as modifying databases or internal code) without 
+  affecting the client application, as long as the resource URIs and payloads remain 
+  consistent.
+- **Scalable**: By enforcing statelessness (where the server does not store any 
+  client session context), request processing is independent. Any server in a cluster 
+  can handle any incoming request, allowing easy horizontal scaling.
+
+
+3. CORE COMPONENTS OF A RESTFUL API
+--------------------------------------------------------------------------------
+Every REST request and response is composed of the following key elements:
+- **Resources**: The primary building blocks in REST. A resource is any entity or 
+  data object that can be identified using a logical URI (Uniform Resource Identifier) 
+  (e.g., `/countries`, `/hello`).
+- **Verbs (HTTP Methods)**: Define the actions to perform on the resource:
+  - `GET`: Retrieve a representation of a resource.
+  - `POST`: Create a new resource.
+  - `PUT`: Update an existing resource.
+  - `DELETE`: Remove a resource.
+- **Headers**: Metadata sent along with the request/response containing information 
+  about the request format, authorization, server details, or caching preferences.
+- **Body**: The actual data payload payload sent (in POST/PUT requests) or returned 
+  (in responses), typically in JSON or XML format.
+- **Response Status Code**: Standard 3-digit numeric codes indicating the outcome 
+  of the HTTP request (e.g., `200 OK`, `201 Created`, `400 Bad Request`, `404 Not Found`).
+
+
+4. CLIENT-SERVER TECHNOLOGY
+--------------------------------------------------------------------------------
+REST enforces a strict separation of concerns between the client and the server.
+- **Client**: Responsible for the user interface, user state, and triggering requests.
+- **Server**: Responsible for data storage, business logic, security, and managing resources.
+
+This separation means:
+- The client does not need to know about database storage or server-side architecture.
+- The server does not need to know about the client's UI implementation.
+- Both components can evolve independently across different platforms (e.g., mobile 
+  app client, React web app client, and Java Spring Boot backend server).
+
+
+5. BENEFITS AND ADVANTAGES OF RESTFUL WEB SERVICES
+--------------------------------------------------------------------------------
+According to industry standards (Ref: https://www.chakray.com/advantages-of-rest-api/):
+- **High Performance**: Lightweight payloads (JSON) and native support for caching 
+  headers make REST APIs extremely fast and efficient.
+- **Platform Independence**: REST APIs can be consumed by any client application 
+  regardless of programming language (Java, Python, Javascript, C#) or platform 
+  (Windows, iOS, Android, Linux).
+- **Scalability and Flexibility**: Statelessness enables servers to handle massive 
+  volumes of concurrent traffic. Developers have the flexibility to migrate databases 
+  or change backend technology easily.
+- **Easy Integration**: Using standard HTTP methods and standard formats makes REST 
+  services incredibly straightforward for developers to learn, implement, and integrate 
+  into existing software architectures.

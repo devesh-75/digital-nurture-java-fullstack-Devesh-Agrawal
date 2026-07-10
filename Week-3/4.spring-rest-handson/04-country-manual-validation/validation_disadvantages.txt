@@ -1,0 +1,40 @@
+================================================================================
+DISADVANTAGES OF MANUAL VALIDATION IN SPRING REST CONTROLLERS
+================================================================================
+
+1. CODE DUPLICATION (BOILERPLATE CODE)
+--------------------------------------------------------------------------------
+If we perform manual validation using a `ValidatorFactory` in each controller method, 
+we have to replicate the same block of verification code in every controller:
+- Creating `ValidatorFactory` and `Validator` instances.
+- Calling `validator.validate(bean)`.
+- Iterating over `violations` and compiling error strings.
+- Throwing a `ResponseStatusException`.
+If we have multiple controllers (e.g. `CountryController`, `EmployeeController`, 
+`DepartmentController`), this leads to massive code duplication.
+
+
+2. VIOLATION OF CLEAN ARCHITECTURE (CROSS-CUTTING CONCERN)
+--------------------------------------------------------------------------------
+Validation is a cross-cutting concern (similar to logging, security, and transactions). 
+Mixing validation boilerplate directly into the business handler of a controller method 
+clutters the controller logic, making the code harder to read, maintain, and unit test.
+
+
+3. HARDER TO INTEGRATE CUSTOM GLOBAL ERROR RESPONSES
+--------------------------------------------------------------------------------
+Throwing custom exceptions manually in every endpoint makes it extremely difficult to 
+enforce a consistent corporate JSON structure for API error responses across the 
+entire application (e.g., matching a uniform layout with timestamp, status code, 
+and list of fields with validation errors).
+
+
+4. THE SOLUTION: DECLARATIVE VALIDATION WITH GLOBAL EXCEPTION HANDLING
+--------------------------------------------------------------------------------
+By using Spring's declarative validation (`@Valid` annotation on the controller 
+parameters) coupled with a `@ControllerAdvice` global exception handler:
+- Spring automatically performs validation before invoking the controller method.
+- If there are violations, Spring throws `MethodArgumentNotValidException`.
+- The global exception handler intercepts the exception and builds a standardized JSON 
+  error payload, completely eliminating the need for validation boilerplate code inside 
+  controllers.
