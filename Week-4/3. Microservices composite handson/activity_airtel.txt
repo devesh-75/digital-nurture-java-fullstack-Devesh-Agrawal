@@ -1,0 +1,29 @@
+Airtel Products and Services Overview:
+
+Based on the Airtel website (https://www.airtel.in/), the main products and services offered include:
+
+1. Mobile Services (Prepaid & Postpaid):
+   - Prepaid plans (unlimited calls, data packs, roaming, entertainment bundles like Disney+ Hotstar, Amazon Prime).
+   - Postpaid plans (Family plans, data rollover, Airtel Black integrations).
+   - International Roaming packs.
+   - eSIM services.
+
+2. Broadband & Fiber:
+   - Airtel Xstream Fiber (high-speed broadband up to 1 Gbps, unlimited data, voice calls).
+   - Bundled Wi-Fi routers.
+
+3. DTH (Direct-to-Home) TV:
+   - Airtel Xstream Play (Smart Android TV Box, 4K picture quality, Google Assistant).
+   - Standard HD and SD set-top boxes with custom channels and packs.
+
+4. Financial Services:
+   - Airtel Payments Bank (Savings account, digital wallet, UPI payments, utility bill payments, recharges, insurance).
+
+5. Enterprise & Business Solutions (Airtel Business):
+   - Connectivity (Leased lines, MPLS, SD-WAN).
+   - Cloud and Data Center services.
+   - IoT (Internet of Things) and cybersecurity solutions.
+   - CPaaS (Airtel IQ - SMS, Voice, WhatsApp API).
+
+6. Airtel Black:
+   - Customized combination plans pooling Mobile, Fiber, and DTH connections under a single bill with premium customer support.

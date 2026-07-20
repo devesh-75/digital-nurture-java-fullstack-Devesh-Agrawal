@@ -1,0 +1,23 @@
+Monolithic Service Failure Discussion & Solutions:
+
+Scenario: 
+A RESTful Web Service application implemented as a monolith became very slow due to high transaction volume for "get account balance" during festival season shopping. A memory leak in the code consumed all available memory, causing new requests to time out. The support team had to restart the entire server, taking 2 to 3 hours to stabilize, bringing down other unrelated services like loan submission and insurance closure.
+
+Key Ideas to Handle and Prevent this Situation:
+
+1. Microservices Architecture Decomposition:
+   - Split the monolith into separate, independent microservices (e.g., Account Service, Loan Service, Insurance Service, Card Service).
+   - If the Account Service encounters a memory leak, only the account balance operations are affected. The Loan and Insurance services will remain operational, preventing a single point of failure (SPOF) from bringing down the entire enterprise.
+
+2. Auto-scaling and Load Balancing:
+   - Run multiple instances of the Account Service behind an API Gateway or Load Balancer.
+   - Configure auto-scaling based on CPU/memory usage. When traffic spikes, new instances spin up automatically to share the load.
+
+3. Monitoring, Profiling and Alerts:
+   - Implement APM (Application Performance Monitoring) tools like Prometheus, Grafana, Dynatrace, or Spring Boot Actuator.
+   - Set up alerts to notify support teams when heap memory usage crosses critical thresholds (e.g., 85%), before it results in OutOfMemory (OOM) crashes.
+   - Run memory profiling (using JProfiler, VisualVM) to detect the exact location of the memory leak in the account balance code.
+
+4. Rate Limiting and Circuit Breaker:
+   - Implement rate limiting at the API Gateway level (e.g., Spring Cloud Gateway Redis Rate Limiter) to prevent brute-force traffic overload.
+   - Use Circuit Breakers (like Resilience4j) to fail fast and return a fallback response (e.g., cached balance or graceful error message) when the underlying database or microservice becomes unresponsive.
