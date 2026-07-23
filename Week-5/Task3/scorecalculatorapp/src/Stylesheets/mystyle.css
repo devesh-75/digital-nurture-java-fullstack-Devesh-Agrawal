@@ -1,0 +1,49 @@
+.format {
+  text-align: center;
+  font-family: Arial, Helvetica, sans-serif;
+  margin-top: 50px;
+}
+
+.format h1 {
+  color: #a52a2a;
+}
+
+.Name {
+  color: blue;
+  margin: 8px 0;
+  font-size: 18px;
+}
+
+.Name span {
+  color: #7b68ee;
+}
+
+.School {
+  color: #8b0000;
+  margin: 8px 0;
+  font-size: 18px;
+}
+
+.School span {
+  color: #ff69b4;
+}
+
+.Total {
+  color: #4b0082;
+  margin: 8px 0;
+  font-size: 18px;
+}
+
+.Total span {
+  color: #9370db;
+}
+
+.Score {
+  color: green;
+  margin: 8px 0;
+  font-size: 18px;
+}
+
+.Score span {
+  color: #2e8b57;
+}

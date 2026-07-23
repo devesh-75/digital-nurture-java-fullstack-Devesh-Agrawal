@@ -1,0 +1,28 @@
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 150px;
+  margin-top: 150px;
+  font-family: Arial, sans-serif;
+  font-size: 18px;
+}
+
+.entry, .exit {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.btn {
+  background-color: #90ee90;
+  border: 1px solid #000;
+  border-radius: 4px;
+  padding: 5px 15px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.btn:hover {
+  background-color: #76c776;
+}

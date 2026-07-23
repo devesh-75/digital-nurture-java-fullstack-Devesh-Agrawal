@@ -1,0 +1,17 @@
+Define Component Constructor
+
+The Component Constructor is a special method called before a React class component is mounted.
+
+Purpose of Constructor in React:
+1. Initializing State: Used to assign the initial state object to this.state.
+2. Binding Event Handlers: Used to bind event handler methods to the component instance.
+
+Rules for Constructor:
+- Call super(props) as the very first line inside the constructor.
+- Do not call setState() inside the constructor; assign initial state directly to this.state.
+
+Example Syntax:
+constructor(props) {
+  super(props);
+  this.state = { title: "Student Management Portal" };
+}

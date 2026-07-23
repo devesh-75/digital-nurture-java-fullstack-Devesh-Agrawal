@@ -1,0 +1,15 @@
+Explain JavaScript let
+
+Definition:
+The let keyword in JavaScript declares a block-scoped local variable, optionally initializing it to a value.
+
+Key Characteristics of let:
+1. Block Scope: Variables declared with let are restricted to the block ({}), loop, or expression where they are defined.
+2. No Re-declaration: Cannot re-declare a variable declared with let within the same scope.
+3. Hoisting behavior: Hoisted to top of scope but remains in a "Temporal Dead Zone" (TDZ) until initialization.
+
+Example:
+if (true) {
+  let score = 50;
+}
+// score is NOT accessible outside the if block

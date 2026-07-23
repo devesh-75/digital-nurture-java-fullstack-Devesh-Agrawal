@@ -1,0 +1,15 @@
+Types of Router Components in React Router
+
+React Router provides different router components depending on environment and use case:
+
+1. BrowserRouter:
+   - Uses standard HTML5 history API (pushState) for standard URL paths (e.g., example.com/employees).
+
+2. HashRouter:
+   - Uses the hash portion of the URL (e.g., example.com/#/employees). Useful for static hosting without server fallback configuration.
+
+3. MemoryRouter:
+   - Keeps history in memory without updating the address bar. Best for unit testing and React Native environments.
+
+4. StaticRouter:
+   - Immutable router used for Server-Side Rendering (SSR).

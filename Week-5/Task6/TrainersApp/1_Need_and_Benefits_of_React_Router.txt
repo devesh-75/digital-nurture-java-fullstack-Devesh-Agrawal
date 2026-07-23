@@ -1,0 +1,15 @@
+Need and Benefits of React Router
+
+Definition:
+React Router is a standard library for routing in React applications. It enables navigation among views of various components in a Single-Page Application (SPA), allowing the browser URL to change without forcing a full page refresh.
+
+Need for React Router:
+1. Single Page Application Navigation: Enables client-side routing where components render dynamically based on URL paths.
+2. Synchronized Browser URL: Keeps browser URL in sync with application UI state.
+3. Deep Linking: Allows users to bookmark or share direct links to specific pages (e.g. /trainers/1).
+
+Benefits of React Router:
+- Seamless and fast user transitions without full page reloads.
+- Declarative route management using JSX components (<Routes>, <Route>).
+- Dynamic routing & URL parameter handling via hooks (e.g., useParams).
+- Nested routing support for complex UI structures.

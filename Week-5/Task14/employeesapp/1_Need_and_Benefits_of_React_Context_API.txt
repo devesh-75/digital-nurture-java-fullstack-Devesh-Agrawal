@@ -1,0 +1,13 @@
+Need and Benefits of React Context API
+
+Definition:
+The React Context API provides a way to pass data through the component tree without having to pass props down manually at every level ('prop drilling').
+
+Need for Context API:
+1. Eliminates Prop Drilling: Avoids manually passing global data (like themes, user authentication status, language settings) down through deeply nested child components that do not need it themselves.
+2. Centralized State Sharing: Allows components anywhere in the subtree to access shared state directly.
+
+Benefits:
+- Cleaner, more maintainable code without intermediate prop forwarding.
+- Native React solution with no external dependencies (unlike Redux for simple global state).
+- Dynamic updates: When the Provider's value changes, all descendant Consumer or useContext consumers re-render automatically.

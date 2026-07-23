@@ -1,0 +1,20 @@
+Extract Components with Keys in React
+
+Rule for Keys when Extracting Components:
+Keys only make sense in the context of the surrounding array. When extracting a ListItem component, you should keep the key on the <ListItem /> element in the array rather than on the root element inside ListItem itself.
+
+Example:
+// Correct Usage:
+function ListItem(props) {
+  return <li>{props.value}</li>;
+}
+
+function NumberList(props) {
+  return (
+    <ul>
+      {props.numbers.map((number) => (
+        <ListItem key={number.toString()} value={number} />
+      ))}
+    </ul>
+  );
+}

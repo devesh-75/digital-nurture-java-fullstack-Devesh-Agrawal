@@ -1,0 +1,23 @@
+Various Life Cycle Hook Methods in React
+
+React Class Component Lifecycle is divided into 4 main phases:
+
+1. Mounting Phase (Component Creation):
+   - constructor(props): Initializes state and binds methods.
+   - static getDerivedStateFromProps(props, state): Syncs state with props changes before rendering.
+   - render(): Returns JSX to render UI.
+   - componentDidMount(): Executed immediately after component is inserted into DOM. Used for API calls and timers.
+
+2. Updating Phase (Props or State Changes):
+   - static getDerivedStateFromProps()
+   - shouldComponentUpdate(nextProps, nextState): Determines if re-rendering is needed for performance optimization.
+   - render(): Re-renders JSX.
+   - getSnapshotBeforeUpdate(prevProps, prevState): Captures DOM info (e.g. scroll position) before changes are committed.
+   - componentDidUpdate(prevProps, prevState): Executed right after DOM update completes.
+
+3. Unmounting Phase (Component Removal):
+   - componentWillUnmount(): Executed before component is destroyed. Used for cleanup (canceling API requests, clearing timers).
+
+4. Error Handling Phase:
+   - static getDerivedStateFromError(error): Renders fallback UI when error occurs in child.
+   - componentDidCatch(error, info): Logs error info or displays alert messages.

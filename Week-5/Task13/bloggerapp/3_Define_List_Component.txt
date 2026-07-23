@@ -1,0 +1,18 @@
+Define List Component in React
+
+Definition:
+A List Component is a React component designed to loop through an array of objects and render a collection of UI elements (such as list items <li> or cards).
+
+Example:
+export function BookDetails({ books }) {
+  return (
+    <ul>
+      {books.map((book) => (
+        <div key={book.id}>
+          <h3>{book.bname}</h3>
+          <h4>{book.price}</h4>
+        </div>
+      ))}
+    </ul>
+  );
+}

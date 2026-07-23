@@ -1,0 +1,15 @@
+Identify React Event Naming Convention
+
+React event handling rules and naming conventions:
+
+1. camelCase Naming:
+   - React event attributes are named using camelCase instead of lowercase HTML event names.
+   - Examples:
+     - HTML: onclick=""        --> React: onClick={}
+     - HTML: onsubmit=""       --> React: onSubmit={}
+     - HTML: onchange=""       --> React: onChange={}
+     - HTML: onkeydown=""      --> React: onKeyDown={}
+
+2. Passing Functions (Not Strings):
+   - In HTML, event handlers are passed as strings: onclick="handleClick()"
+   - In React JSX, event handlers are passed as JavaScript function references: onClick={this.handleClick}

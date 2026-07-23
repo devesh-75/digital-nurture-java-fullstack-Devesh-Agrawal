@@ -1,0 +1,17 @@
+Explain ES6 Class Inheritance
+
+Definition:
+ES6 class inheritance allows a child class to inherit properties and methods from a parent class using the extends keyword.
+
+Key Concepts:
+1. extends Keyword: Establishes parent-child inheritance relationship.
+2. super() Function: Calls parent class constructor to initialize inherited properties before accessing 'this'.
+3. Method Overriding: Child class can define its own implementation of a parent method.
+
+Example:
+class Captain extends Player {
+  constructor(name, score, team) {
+    super(name, score);
+    this.team = team;
+  }
+}

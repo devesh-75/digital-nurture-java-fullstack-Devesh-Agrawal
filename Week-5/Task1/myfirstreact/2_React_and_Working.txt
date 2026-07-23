@@ -1,0 +1,10 @@
+React and How It Works
+
+Definition:
+React is an open-source JavaScript library developed by Meta (Facebook) for building user interfaces, specifically for single-page applications. It is component-based and declarative.
+
+How React Works:
+1. Component Architecture: React breaks the UI into small, reusable components.
+2. Declarative Syntax: Developers specify what the UI should look like for a given state, and React handles rendering.
+3. Virtual DOM: React creates an in-memory Virtual DOM representation of the real DOM.
+4. Diffing & Reconciliation: When state or props change, React compares the new Virtual DOM with the old one and updates only the modified parts in the real DOM.

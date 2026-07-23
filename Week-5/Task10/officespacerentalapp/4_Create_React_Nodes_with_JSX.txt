@@ -1,0 +1,10 @@
+Create React Nodes with JSX
+
+Explanation:
+React Nodes are the lightweight virtual DOM objects created when JSX elements are evaluated.
+
+How JSX Creates React Nodes:
+1. Attributes: JSX attributes use camelCase naming (e.g. className, htmlFor, onClick, src).
+2. Elements as Variables: JSX elements can be stored in JavaScript constants or variables:
+   const jsxatt = <img src={sr} width="25%" height="25%" alt="Office Space" />;
+3. Embedding Elements: React nodes stored in variables can be embedded directly into JSX markup using curly braces ({jsxatt}).

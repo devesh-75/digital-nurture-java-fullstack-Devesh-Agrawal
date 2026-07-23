@@ -1,0 +1,14 @@
+Explain Function Component
+
+A Function Component is a JavaScript or ES6 arrow function that returns JSX elements describing the UI.
+
+Key Characteristics:
+1. Simplicity: Less boilerplate code compared to class components.
+2. No 'this' keyword: Does not use 'this', making code cleaner and less error-prone.
+3. React Hooks: Uses hooks like useState() and useEffect() to manage state and side effects.
+4. Performance: Lightweight and easier to read, test, and debug.
+
+Example Syntax:
+function Home() {
+  return <h3>Welcome to the Home page of Student Management Portal</h3>;
+}

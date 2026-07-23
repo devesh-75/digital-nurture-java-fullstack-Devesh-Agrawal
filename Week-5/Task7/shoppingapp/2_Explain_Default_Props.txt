@@ -1,0 +1,19 @@
+Explain Default Props in React
+
+Definition:
+Default Props (defaultProps) is a property in React components used to define default values for props in case they are not explicitly passed by the parent component.
+
+Purpose:
+- Prevents runtime errors (such as undefined errors) when required props are omitted.
+- Provides fallback data for components.
+
+Example Usage:
+class Cart extends React.Component {
+  render() {
+    return <div>Total Items: {this.props.item.length}</div>;
+  }
+}
+
+Cart.defaultProps = {
+  item: []
+};

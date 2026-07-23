@@ -1,0 +1,15 @@
+Working with createContext() in React
+
+1. Creating Context:
+   - Call React.createContext(defaultValue) to create a Context object:
+     import { createContext } from 'react';
+     const ThemeContext = createContext('light');
+     export default ThemeContext;
+
+2. Context Provider:
+   - Wrap parent elements in <ThemeContext.Provider value={themeValue}> to provide state to all nested children.
+
+3. Consuming Context:
+   - Functional Components: Use the useContext hook:
+     const theme = useContext(ThemeContext);
+   - Class Components: Use static contextType = ThemeContext or <ThemeContext.Consumer>{value => ...}</ThemeContext.Consumer>.

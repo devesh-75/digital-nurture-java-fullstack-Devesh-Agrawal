@@ -1,0 +1,11 @@
+Define render() Function
+
+The render() function is the only required method in a React class component.
+
+Purpose:
+The render() method inspects this.props and this.state and returns a React element (usually written via JSX) to be rendered on the browser screen.
+
+Key Rules of render():
+1. Pure Function: It must be pure, meaning it does not modify component state directly.
+2. Single Root Element: It should return a single root JSX element or a Fragment.
+3. Automatic Execution: React automatically calls render() whenever component state or props change.

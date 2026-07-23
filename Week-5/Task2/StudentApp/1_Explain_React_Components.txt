@@ -1,0 +1,11 @@
+Explain React Components
+
+A React Component is a self-contained, reusable block of code that controls a part of the user interface (UI). 
+
+Key Concept:
+React components work like JavaScript functions that return HTML structure via JSX. They accept arbitrary inputs called 'props' (short for properties) and return React elements describing what should appear on the screen.
+
+Key Features of React Components:
+1. Reusability: Components can be reused across different parts of the application.
+2. Nesting: Components can contain other components to build complex UI hierarchies.
+3. State & Props: Props pass data down from parent to child components, while state manages dynamic data internal to a component.

@@ -1,0 +1,9 @@
+Differences Between SPA and MPA
+
+Feature                  Single-Page Application (SPA)        Multi-Page Application (MPA)
+-----------------------  -----------------------------------  -----------------------------------
+Page Reload              No full page reloads                 Flashes/reloads on every click
+Speed                    Faster after initial load            Slower due to full page requests
+Architecture             Client-side rendering                Server-side rendering
+Development Complexity   Higher frontend complexity          Traditional backend architecture
+SEO                      Requires special setup (SSR)         Easier out-of-the-box SEO

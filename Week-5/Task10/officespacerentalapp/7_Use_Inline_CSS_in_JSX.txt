@@ -1,0 +1,12 @@
+Use Inline CSS in JSX
+
+Explanation:
+Inline CSS in React JSX is written as a JavaScript object with camelCase property names instead of standard CSS hyphenated strings.
+
+Syntax:
+<div style={{ color: 'red', fontSize: '18px', padding: '10px' }}>...</div>
+
+Key Differences:
+1. Double Curly Braces: Outer braces for JSX expression, inner braces for JavaScript object literal.
+2. camelCase Naming: e.g., font-size becomes fontSize, background-color becomes backgroundColor.
+3. String Values: Property values are passed as strings (e.g., 'red', '25%').

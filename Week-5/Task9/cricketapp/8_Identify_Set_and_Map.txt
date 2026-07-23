@@ -1,0 +1,14 @@
+Identify Set and Map in ES6
+
+1. Set:
+   - A built-in ES6 collection of unique values (no duplicates allowed).
+   - Usage:
+     const playerSet = new Set(['Sachin', 'Dhoni', 'Sachin']);
+     console.log(playerSet.size); // Output: 2
+
+2. Map:
+   - A built-in ES6 collection of key-value pairs where keys can be of any data type (objects, functions, primitives).
+   - Usage:
+     const playerMap = new Map();
+     playerMap.set('Sachin', 95);
+     console.log(playerMap.get('Sachin')); // Output: 95

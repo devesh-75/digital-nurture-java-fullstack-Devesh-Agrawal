@@ -1,0 +1,21 @@
+Sequence of Steps in Rendering a Component
+
+The step-by-step sequence of rendering a React class component during initial mount:
+
+Step 1: Constructor Execution
+- constructor(props) is called first to initialize state object (e.g., this.state = { posts: [] }).
+
+Step 2: Static getDerivedStateFromProps
+- Executed right before calling render method on initial mount and subsequent updates.
+
+Step 3: render() Method Execution
+- render() is called to inspect props and state and return the JSX element structure.
+
+Step 4: DOM Insertion (Mounting)
+- React updates the browser DOM with the rendered JSX nodes.
+
+Step 5: componentDidMount() Execution
+- Executed immediately after DOM insertion. Used to make HTTP fetch requests (e.g., loadPosts()) to fetch data and update state via setState().
+
+Step 6: Re-render Trigger
+- Calling setState() in componentDidMount() triggers a re-render phase to display fetched data on screen.

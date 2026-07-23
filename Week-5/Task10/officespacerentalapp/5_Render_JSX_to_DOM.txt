@@ -1,0 +1,12 @@
+Render JSX to DOM
+
+Explanation:
+Rendering JSX to the DOM involves taking the Virtual DOM node structure created by React and mounting it into actual browser DOM elements.
+
+How rendering works in React 18:
+1. Target DOM Container: An HTML div container in index.html (e.g., <div id="root"></div>).
+2. Create Root:
+   import ReactDOM from 'react-dom/client';
+   const root = ReactDOM.createRoot(document.getElementById('root'));
+3. Render Component:
+   root.render(<App />);

@@ -1,0 +1,9 @@
+Differences Between React Components and JavaScript Functions
+
+Feature                   React Component                     JavaScript Function
+------------------------  ----------------------------------  ----------------------------------
+Return Value              Returns JSX (UI elements)           Returns data values or object
+Naming Convention         Must start with Capital letter      Starts with lowercase letter
+Data Handling             Receives 'props' object             Receives parameters/arguments
+State Management          Can maintain state (hooks/state)    Does not maintain persistent state
+UI Rendering              Renders DOM elements automatically  Performs business logic/computations

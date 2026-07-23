@@ -1,0 +1,16 @@
+Explain ReactDOM.render()
+
+Definition:
+ReactDOM.render() is a method provided by the react-dom package used to render a React element into the actual browser DOM container.
+
+Syntax (Legacy / React 17 and below):
+ReactDOM.render(element, container[, callback])
+
+Syntax (React 18+ Concurrent Root):
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(<App />);
+
+How It Works:
+1. Takes the root React component (e.g. <App />).
+2. Mounts it inside the specified HTML container element (e.g. <div id="root"></div>).
+3. Efficiently manages Virtual DOM diffing and updates real DOM elements automatically.

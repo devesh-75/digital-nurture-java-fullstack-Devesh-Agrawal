@@ -1,0 +1,16 @@
+Explain React.createElement()
+
+Definition:
+React.createElement() is a core React method that creates and returns a new React Element of a given type.
+
+Syntax:
+React.createElement(type, [props], [...children])
+
+Parameters:
+1. type: HTML tag name (string e.g. 'h1') or React component type.
+2. props: Object containing element attributes and properties (e.g. { className: 'textRed' }).
+3. children: Child elements or text content passed inside the element.
+
+Example:
+// JSX: <h1 className="textRed">Hello World</h1>
+// Transpiled JS: React.createElement('h1', { className: 'textRed' }, 'Hello World')

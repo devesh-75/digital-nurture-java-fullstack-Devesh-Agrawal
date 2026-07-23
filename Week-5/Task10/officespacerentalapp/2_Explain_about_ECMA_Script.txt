@@ -1,0 +1,11 @@
+Explain ECMAScript
+
+Definition:
+ECMAScript (ES) is a standardized scripting language specification created by ECMA International (TC39) to standardize JavaScript across browsers and environments.
+
+Key Concepts:
+- Standard Specification: JavaScript is an implementation of the ECMAScript standard.
+- Major Versions:
+  - ES5 (2009): Strict mode, JSON support, array methods (forEach, map, filter).
+  - ES6 / ES2015: Introduced let/const, arrow functions, classes, modules, promises, destructuring, and spread operator.
+  - ES2016+: Annual updates introducing async/await, optional chaining, nullish coalescing, etc.

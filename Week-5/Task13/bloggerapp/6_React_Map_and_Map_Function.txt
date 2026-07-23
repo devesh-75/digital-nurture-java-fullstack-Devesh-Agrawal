@@ -1,0 +1,15 @@
+React Map and map() Function
+
+Explanation:
+The Array.prototype.map() method is the standard JavaScript tool used in React to iterate over data arrays and transform each item into a corresponding JSX element.
+
+Syntax:
+{items.map(item => (
+  <div key={item.id}>
+    <h3>{item.title}</h3>
+  </div>
+))}
+
+Key Advantages:
+- Immutable & Declarative: Returns a new array of JSX nodes without modifying the original data array.
+- Clean JSX Integration: Can be embedded inline directly inside JSX return blocks using curly braces {}.

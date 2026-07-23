@@ -1,0 +1,12 @@
+Types of Components in React
+
+React components are broadly classified into two main types:
+
+1. Functional Components:
+   - Plain JavaScript functions that accept props and return JSX.
+   - Stateless by default, but use React Hooks (e.g., useState, useEffect) for state and lifecycle methods.
+
+2. Class Components:
+   - ES6 classes that extend React.Component.
+   - Use the render() method to return JSX.
+   - Maintain state using this.state and use lifecycle methods (e.g., componentDidMount).

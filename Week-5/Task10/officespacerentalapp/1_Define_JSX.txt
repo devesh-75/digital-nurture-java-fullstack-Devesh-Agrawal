@@ -1,0 +1,9 @@
+Define JSX in React
+
+Definition:
+JSX stands for JavaScript XML. It is a syntax extension for JavaScript used with React to describe what the user interface should look like.
+
+Key Characteristics of JSX:
+1. HTML-like Syntax: Allows writing HTML structures directly inside JavaScript code.
+2. Transpilation: Babel transpiles JSX expressions into React.createElement() function calls before browser execution.
+3. Strict XML Rules: All tags must be properly closed (e.g. <img />), and elements must be wrapped in a single root element or Fragment (<>...</>).

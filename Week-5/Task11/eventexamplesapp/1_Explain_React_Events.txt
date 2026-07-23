@@ -1,0 +1,9 @@
+Explain React Events
+
+Definition:
+React Events are cross-browser wrappers around the browser's native DOM events, designed to handle user interactions such as clicks, key presses, mouse moves, and form submissions.
+
+Key Characteristics of React Events:
+1. Synthetic Event System: React uses SyntheticEvent instances to normalize event behaviors across different web browsers.
+2. Event Delegation: React attaches a single event listener to the root container rather than individual DOM elements for optimal performance.
+3. Declarative Binding: Events are attached directly to JSX elements using props (e.g., onClick={this.handleIncrement}).

@@ -1,0 +1,10 @@
+Virtual DOM in React
+
+Definition:
+The Virtual DOM (VDOM) is a lightweight, in-memory copy of the actual DOM tree maintained by React.
+
+How Virtual DOM Works:
+1. Initial Render: React renders the component tree to the Virtual DOM.
+2. State Change: When data changes, React creates a new Virtual DOM tree.
+3. Reconciliation: React uses a diffing algorithm to compare the new Virtual DOM with the previous Virtual DOM.
+4. Batch Updates: React calculates the minimal set of changes needed and updates only those elements in the real DOM.

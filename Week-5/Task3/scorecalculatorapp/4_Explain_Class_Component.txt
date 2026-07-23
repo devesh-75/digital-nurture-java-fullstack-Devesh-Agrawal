@@ -1,0 +1,18 @@
+Explain Class Component
+
+A Class Component is a traditional way to define components in React using ES6 class syntax that extends React.Component.
+
+Key Characteristics:
+1. Inheritance: Extends React.Component class.
+2. State Management: Uses this.state to store component data and this.setState() to update state.
+3. Render Method: Requires a render() method that returns JSX elements.
+4. Lifecycle Hooks: Supports lifecycle methods like componentDidMount(), componentDidUpdate(), and componentWillUnmount().
+
+Example Syntax:
+import React, { Component } from 'react';
+
+export class CalculateScore extends Component {
+  render() {
+    return <h1>Student Details:</h1>;
+  }
+}

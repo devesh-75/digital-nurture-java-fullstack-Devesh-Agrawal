@@ -1,0 +1,8 @@
+Differences Between var and let in JavaScript
+
+Feature               var                                let
+--------------------  ---------------------------------  ---------------------------------
+Scope                 Function-scoped or globally scoped Block-scoped ({})
+Re-declaration        Allowed in same scope              Throws SyntaxError in same scope
+Hoisting              Hoisted & initialized as undefined Hoisted but in Temporal Dead Zone
+Global Object Access  Creates properties on window/global Does not create global properties

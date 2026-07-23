@@ -1,0 +1,9 @@
+Keys in React Applications
+
+Definition:
+Keys are special string attributes you need to include when creating lists of elements in React.
+
+Purpose of Keys:
+1. Element Identification: Helps React identify which items have changed, been added, or been removed.
+2. Reconciliation Efficiency: Gives array elements a stable identity to optimize Virtual DOM diffing.
+3. Best Practice: Always use unique IDs from dataset (e.g., key={book.id}) rather than array indexes whenever possible.

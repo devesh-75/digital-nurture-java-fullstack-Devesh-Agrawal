@@ -1,0 +1,20 @@
+Explain ES6 Class Fundamentals
+
+Definition:
+ES6 introduced class syntax as syntactical sugar over JavaScript's existing prototype-based inheritance model.
+
+Key Fundamentals:
+1. Class Declaration: Defined using the class keyword.
+2. Constructor Method: Special constructor() method for creating and initializing objects.
+3. Class Methods: Shorthand method definition syntax without function keyword.
+
+Example:
+class Player {
+  constructor(name, score) {
+    this.name = name;
+    this.score = score;
+  }
+  display() {
+    return `${this.name}: ${this.score}`;
+  }
+}

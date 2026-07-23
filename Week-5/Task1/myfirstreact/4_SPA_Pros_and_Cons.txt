@@ -1,0 +1,13 @@
+Pros and Cons of Single-Page Application (SPA)
+
+Pros:
+1. Fast response time after initial page load.
+2. Smooth navigation and user transitions.
+3. Reusable component architecture.
+4. Easy to build native mobile apps using shared API logic.
+
+Cons:
+1. Slower initial loading time.
+2. Search Engine Optimization (SEO) challenges without Server-Side Rendering.
+3. Requires JavaScript to be enabled in the browser.
+4. Potential memory leaks in complex applications.

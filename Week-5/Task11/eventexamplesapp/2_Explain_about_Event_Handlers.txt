@@ -1,0 +1,15 @@
+Explain Event Handlers in React
+
+Definition:
+An Event Handler is a function or method that executes in response to an event being triggered by the user (such as clicking a button or submitting a form).
+
+Key Patterns for Event Handlers:
+1. Method Binding / Arrow Functions: Using class property arrow functions to automatically bind 'this':
+   handleClick = () => { ... }
+2. Passing Arguments to Event Handlers:
+   <button onClick={() => this.sayWelcome('welcome')}>Say welcome</button>
+3. Form Submission Handling:
+   handleSubmit = (e) => {
+     e.preventDefault(); // Prevents default page refresh
+     // handle logic
+   }

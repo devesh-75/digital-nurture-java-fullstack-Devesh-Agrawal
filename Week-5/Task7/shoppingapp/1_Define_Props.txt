@@ -1,0 +1,13 @@
+Define Props in React
+
+Definition:
+Props (short for 'properties') are read-only inputs passed from a parent component to a child component in React.
+
+Key Characteristics of Props:
+1. Immutable: Props cannot be modified by the component that receives them (read-only).
+2. Data Flow: Enables unidirectional (top-down) data flow from parent to child components.
+3. Usage Syntax: Passed as attributes in JSX, accessible via this.props in class components or as function arguments in functional components.
+
+Example:
+<Cart item={CartInfo} />
+// Inside Cart component: this.props.item

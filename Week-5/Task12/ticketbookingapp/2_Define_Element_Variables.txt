@@ -1,0 +1,23 @@
+Define Element Variables in React
+
+Definition:
+Element Variables are JavaScript variables used to store React elements (JSX tags).
+
+Benefits & Usage:
+- Helps conditionally render part of a component while keeping the rest of the output unchanged.
+- Prevents JSX duplication and improves code readability.
+
+Example:
+let button;
+if (isLoggedIn) {
+  button = <LogoutButton onClick={this.handleLogoutClick} />;
+} else {
+  button = <LoginButton onClick={this.handleLoginClick} />;
+}
+
+return (
+  <div>
+    <Greeting isLoggedIn={isLoggedIn} />
+    {button}
+  </div>
+);

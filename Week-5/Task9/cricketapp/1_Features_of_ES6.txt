@@ -1,0 +1,12 @@
+Features of ECMAScript 6 (ES6)
+
+Key Features Introduced in ES6:
+1. Block-Scoped Variables: Introduced let and const keywords.
+2. Arrow Functions: Concise syntax for functions (() => {}).
+3. Classes & Inheritance: Class syntax with constructors and extends keyword.
+4. Template Literals: String interpolation using backticks (`Hello ${name}`).
+5. Destructuring Assignment: Unpacking arrays and objects into distinct variables.
+6. Spread & Rest Operators: Syntax (...) for expanding or gathering items.
+7. Modules: Native import and export statements.
+8. New Data Structures: Built-in Set and Map collections.
+9. Promises: Native support for asynchronous programming.

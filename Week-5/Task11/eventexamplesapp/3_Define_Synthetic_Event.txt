@@ -1,0 +1,9 @@
+Define Synthetic Event in React
+
+Definition:
+A SyntheticEvent is a cross-browser wrapper object that wraps the browser's native DOM event interface (DOM Level 3 event spec).
+
+Benefits of Synthetic Events:
+1. Cross-Browser Consistency: Ensures identical event properties and behaviors across all browsers (Chrome, Firefox, Safari, Edge).
+2. Performance Optimization: Utilizes event pooling (in earlier versions) and centralized delegation at the root root node.
+3. Same Interface as Native DOM Events: Provides native methods like stopPropagation() and preventDefault().

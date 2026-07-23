@@ -1,0 +1,17 @@
+Working with CSS Modules and Inline Styles in React
+
+1. CSS Modules:
+   - Filename Convention: ComponentName.module.css (e.g., CohortDetails.module.css).
+   - Local Scoping: CSS class names are scoped locally to the component by default to avoid global namespace collisions.
+   - Usage Syntax:
+     import styles from './CohortDetails.module.css';
+     <div className={styles.box}>...</div>
+
+2. Inline Styles:
+   - Written as JavaScript objects inside JSX using camelCase property names.
+   - Enables dynamic styling based on component props or state logic.
+   - Usage Syntax:
+     const titleStyle = {
+       color: cohort.status.toLowerCase() === 'ongoing' ? 'green' : 'blue'
+     };
+     <h3 style={titleStyle}>{cohort.title}</h3>

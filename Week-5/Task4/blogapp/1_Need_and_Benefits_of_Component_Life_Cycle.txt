@@ -1,0 +1,15 @@
+Need and Benefits of Component Life Cycle in React
+
+Definition:
+The Component Life Cycle refers to the series of phases a React component undergoes from its creation (mounting) to updates (updating) and final destruction (unmounting).
+
+Need for Component Life Cycle:
+1. Resource Management: Initiating data fetching, timer subscriptions, or DOM listeners when the component mounts, and cleaning them up when it unmounts.
+2. Performance Optimization: Preventing unnecessary re-renders by hook controls like shouldComponentUpdate().
+3. Dynamic Updates: Responding to changes in state or props cleanly.
+
+Benefits:
+- Predictable execution order of code.
+- Clean memory management avoiding memory leaks.
+- Effective error handling using error boundary hooks like componentDidCatch().
+- Seamless API integration via componentDidMount().

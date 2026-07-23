@@ -1,0 +1,9 @@
+Differences Between State and Props in React
+
+Feature               Props (Properties)                    State
+--------------------  ------------------------------------  ------------------------------------
+Mutability            Immutable (Read-only)                 Mutable (Can be updated via setState)
+Ownership             Passed from parent component          Managed internally by the component
+Purpose               Passes data down component tree       Holds dynamic data changing over time
+Default Values        Set via Component.defaultProps        Set inside constructor / useState
+Child Component Access Can be passed to child components    Private to the component (unless passed as props)

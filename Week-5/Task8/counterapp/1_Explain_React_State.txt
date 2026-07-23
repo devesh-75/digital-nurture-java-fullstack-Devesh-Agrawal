@@ -1,0 +1,21 @@
+Explain React State
+
+Definition:
+State is a built-in React object used to store dynamic data or information about the component that can change over time. When state object changes, the component re-renders automatically.
+
+Key Characteristics of State:
+1. Mutable: Unlike props, state can be modified within the component using setState() method (or useState hook).
+2. Component-Local: State is private and fully controlled by the component itself.
+3. Triggers Re-render: Modifying state triggers React's reconciliation process to update the Virtual DOM and browser UI.
+
+Usage Example in Class Component:
+constructor(props) {
+  super(props);
+  this.state = { entrycount: 0, exitcount: 0 };
+}
+
+UpdateEntry = () => {
+  this.setState(prevState => ({
+    entrycount: prevState.entrycount + 1
+  }));
+};

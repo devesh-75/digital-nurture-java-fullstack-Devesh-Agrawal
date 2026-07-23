@@ -1,0 +1,15 @@
+Explain Conditional Rendering in React
+
+Definition:
+Conditional Rendering in React works the same way conditions work in JavaScript. You use JavaScript operators (if statements, ternary operators, or logical &&) to create elements representing the current state, and let React update the UI to match them.
+
+Common Techniques:
+1. if / else Statements: Return different component trees based on state/props values.
+   if (isLoggedIn) {
+     return <UserGreeting />;
+   }
+   return <GuestGreeting />;
+
+2. Element Variables: Store elements in variables to conditionally render portions of a component.
+3. Ternary Operator (condition ? true : false): Inline conditional rendering in JSX.
+4. Logical && Operator: Short-circuit evaluation for rendering elements conditionally.

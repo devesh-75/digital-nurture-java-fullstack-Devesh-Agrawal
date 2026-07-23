@@ -1,0 +1,13 @@
+Render Multiple Components in React
+
+Explanation:
+In React, multiple components can be rendered together by wrapping them inside a parent container element (such as a <div> or React Fragment <></>).
+
+Usage Pattern:
+return (
+  <div className="container">
+    <CourseDetails courses={courses} />
+    <BookDetails books={books} />
+    <BlogDetails blogs={blogs} />
+  </div>
+);

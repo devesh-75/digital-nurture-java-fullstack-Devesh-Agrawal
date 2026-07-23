@@ -1,0 +1,16 @@
+Various Ways of Conditional Rendering in React
+
+1. if / else Statements:
+   - Used inside render method or functional component body to return different JSX elements.
+
+2. Element Variables:
+   - Storing React elements in JavaScript variables and conditionally rendering them in JSX.
+
+3. Logical && Operator (Short-Circuit Evaluation):
+   - {showContent && <BlogDetails blogs={blogs} />}
+
+4. Ternary Operator (condition ? true : false):
+   - {courses.length > 0 ? <CourseList /> : <NoCourses />}
+
+5. Returning null:
+   - Returning null from a component function to prevent it from rendering.

@@ -1,0 +1,10 @@
+SPA (Single-Page Application) and Its Benefits
+
+Definition:
+A Single-Page Application (SPA) is a web application or website that interacts with the user by dynamically rewriting the current web page rather than loading entire new pages from a server.
+
+Benefits of SPA:
+1. Fast Performance: Assets like HTML, CSS, and JS are loaded once. Only data is fetched in the background.
+2. Smooth User Experience: Eliminates full page reloads, providing a desktop application-like experience.
+3. Reduced Server Load: Less bandwidth consumption since the server returns JSON data instead of full HTML pages.
+4. Effective Caching: SPAs can cache local data efficiently to support offline functionality.

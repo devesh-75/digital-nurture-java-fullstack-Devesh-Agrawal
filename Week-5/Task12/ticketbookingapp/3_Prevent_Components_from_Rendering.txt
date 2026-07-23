@@ -1,0 +1,17 @@
+Prevent Components from Rendering in React
+
+Explanation:
+In rare cases, you might want a component to hide itself even though it was rendered by another component.
+
+How to Prevent Rendering:
+1. Return null: Returning null from a component's render function causes it to render nothing.
+   function WarningBanner(props) {
+     if (!props.warn) {
+       return null;
+     }
+     return <div className="warning">Warning!</div>;
+   }
+
+2. Lifecycle / Optimizations:
+   - In class components: Returning false from shouldComponentUpdate(nextProps, nextState).
+   - In functional components: Wrapping component with React.memo() to skip rendering when props don't change.

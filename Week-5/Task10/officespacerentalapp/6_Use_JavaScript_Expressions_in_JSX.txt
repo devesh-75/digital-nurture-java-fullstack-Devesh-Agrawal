@@ -1,0 +1,12 @@
+Use JavaScript Expressions in JSX
+
+Explanation:
+You can embed any valid JavaScript expression (variables, function calls, arithmetic operations, ternary conditionals) inside JSX by wrapping it in curly braces {}.
+
+Examples:
+1. Variable Embedding:
+   <h1>{element} , at Affordable Range</h1>
+2. Property Access:
+   <h1>Name: {ItemName.Name}</h1>
+3. Conditional Expressions / Array Indexing:
+   <h3 className={colors[0]}>Rent: Rs. {ItemName.Rent}</h3>

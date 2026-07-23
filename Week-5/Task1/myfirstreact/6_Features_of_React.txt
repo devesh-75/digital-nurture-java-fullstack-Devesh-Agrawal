@@ -1,0 +1,7 @@
+Features of React
+
+1. JSX (JavaScript XML): Allows writing HTML structure inside JavaScript files easily.
+2. Virtual DOM: Enhances performance by updating only modified DOM elements.
+3. Component-Based Architecture: UI is split into independent, reusable components.
+4. One-Way Data Binding: Data flows in a single direction from parent to child components.
+5. High Performance: Efficient rendering using Virtual DOM and diffing algorithms.

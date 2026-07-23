@@ -1,0 +1,13 @@
+Explain JavaScript const
+
+Definition:
+The const keyword declares block-scoped variables whose values cannot be reassigned once initialized.
+
+Key Characteristics of const:
+1. Mandatory Initialization: Must be assigned a value during declaration.
+2. Read-Only Reference: Cannot reassign a new value to a const variable.
+3. Mutable Objects/Arrays: Properties of objects or elements of arrays assigned to const can still be modified.
+
+Example:
+const maxPlayers = 11;
+// maxPlayers = 12; // Throws TypeError

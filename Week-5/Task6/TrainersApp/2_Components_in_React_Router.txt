@@ -1,0 +1,18 @@
+Components in React Router
+
+Core React Router DOM components:
+
+1. <BrowserRouter>:
+   - The primary wrapper component that uses HTML5 history API (pushState, replaceState) to keep UI in sync with the URL.
+
+2. <Routes>:
+   - A container component that looks through all its child <Route> elements to find the best match and render that branch of the UI.
+
+3. <Route>:
+   - Defines a mapping between a specific URL path and the React component to render (e.g. <Route path="/trainers" element={<TrainersList />} />).
+
+4. <Link>:
+   - Provides accessible navigation links similar to HTML <a> tags, but prevents full page refreshes (e.g. <Link to="/trainers">Show Trainers</Link>).
+
+5. <NavLink>:
+   - A special version of <Link> that adds styling attributes (e.g. active class) when the rendered link matches the current URL.

@@ -1,0 +1,10 @@
+Define ES6 Arrow Functions
+
+Definition:
+Arrow functions provide a concise syntax for writing function expressions in ES6 using the fat arrow (=>) syntax.
+
+Key Characteristics:
+1. Concise Syntax: Implicit return for single-expression functions:
+   const add = (a, b) => a + b;
+2. Lexical 'this': Arrow functions do not have their own 'this' binding; they inherit 'this' from the surrounding lexical scope.
+3. No arguments Object: Arrow functions do not bind their own arguments object.
